@@ -31,7 +31,7 @@ struct CarImplementation fiat_multipla3={ORANGE,fiat_multipla,false};
 struct CarImplementation jeep1={SILVER,jeep,false};
 struct CarImplementation jeep2={BLACK,jeep,false};
 
-Car car_park[]={&aixam1,&fiat_multipla1,&fiat_multipla2,&fiat_multipla3,&jeep1,&jeep2};
+static Car car_park[]={&aixam1,&fiat_multipla1,&fiat_multipla2,&fiat_multipla3,&jeep1,&jeep2};
 
 Car get_car(enum CarType type){
     for (int i = 0; i < NUMBER_OF_CARS; i++) {
@@ -89,13 +89,21 @@ void set_acceleration_rate(Car car, double acceleration_rate){
       }
 }
 void accelerate(Car car){
-  if((car->car_data.speed+car->car_data.acceleration_rate)*3.6<=car->car_data.max_speed)
+    double temp=car->car_data.speed+ (car->car_data.acceleration_rate*3.6);
+    printf("max speed: %d\n", car->car_data.max_speed);
+    printf("temp: %lf\n",temp);
+
+  if(temp<=car->car_data.max_speed)
   {
-    double temp=(car->car_data.speed+ car->car_data.acceleration_rate)*3.6;
     if (temp-(int)temp>=.5) {
         car->car_data.speed=(int)temp+1;
     }else{
         car->car_data.speed=temp;
     }
-  }
+    printf("current speed: %d\n",car->car_data.speed);
+}else{
+    printf("e");
+}
+temp=0;
+
 }

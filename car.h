@@ -31,4 +31,5 @@ int get_speed(Car car);
 void init();
 void set_acceleration_rate(Car car, double acceleration_rate);
 void accelerate(Car car);
+
 #endif
