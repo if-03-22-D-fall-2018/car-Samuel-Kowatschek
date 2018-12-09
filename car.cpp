@@ -89,21 +89,12 @@ void set_acceleration_rate(Car car, double acceleration_rate){
       }
 }
 void accelerate(Car car){
-    double temp=car->car_data.speed+ (car->car_data.acceleration_rate*3.6);
-    printf("max speed: %d\n", car->car_data.max_speed);
-    printf("temp: %lf\n",temp);
-
-  if(temp<=car->car_data.max_speed)
-  {
-    if (temp-(int)temp>=.5) {
-        car->car_data.speed=(int)temp+1;
-    }else{
-        car->car_data.speed=temp;
-    }
-    printf("current speed: %d\n",car->car_data.speed);
-}else{
-    printf("e");
-}
-temp=0;
-
+    double temp = car->car_data.acceleration_rate * 4;
+    if(temp + car->car_data.speed <= car->car_data.max_speed)
+    {
+      car->car_data.speed+=temp;
+    }else if(car->car_data.speed<=car->car_data.max_speed){
+      int difference = car->car_data.max_speed - car->car_data.speed;
+      car->car_data.speed+=difference;
+  }
 }
