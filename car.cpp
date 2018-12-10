@@ -64,7 +64,7 @@ int get_speed(Car car){
     if (car->car_data.speed-(int)car->car_data.speed>=.5) {
       return (int)car->car_data.speed+1;
     }
-    return (int) car;
+    return (int)car->car_data.speed;
 }
 
 
@@ -93,9 +93,11 @@ void set_acceleration_rate(Car car, double acceleration_rate){
 }
 void accelerate(Car car){
     double temp = car->car_data.acceleration_rate * 3.6;
-    if(temp + car->car_data.speed <= car->car_data.max_speed)
+    if(temp + car->car_data.speed < car->car_data.max_speed)
     {
       car->car_data.speed+=temp;
+    }else if(car->car_data.speed < car->car_data.max_speed){
+      double difference = car->car_data.max_speed - car->car_data.speed;
+      car->car_data.speed+=difference;
     }
   }
-}
