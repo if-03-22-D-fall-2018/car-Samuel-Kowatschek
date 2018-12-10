@@ -9,7 +9,7 @@ struct CarData{
   int max_speed;
   double fill_level;
   double acceleration_rate;
-  int speed;
+  double speed;
   double lowest_acceleration_rate;
   double highest_acceleration_rate;
 };
@@ -61,7 +61,10 @@ double get_acceleration_rate(Car car){
 }
 
 int get_speed(Car car){
-    return car->car_data.speed;
+    if (car->car_data.speed-(int)car->car_data.speed>=.5) {
+      return (int)car->car_data.speed+1;
+    }
+    return (int) car;
 }
 
 
@@ -89,12 +92,10 @@ void set_acceleration_rate(Car car, double acceleration_rate){
       }
 }
 void accelerate(Car car){
-    double temp = car->car_data.acceleration_rate * 4;
+    double temp = car->car_data.acceleration_rate * 3.6;
     if(temp + car->car_data.speed <= car->car_data.max_speed)
     {
       car->car_data.speed+=temp;
-    }else if(car->car_data.speed<=car->car_data.max_speed){
-      int difference = car->car_data.max_speed - car->car_data.speed;
-      car->car_data.speed+=difference;
+    }
   }
 }
